@@ -1,0 +1,20 @@
+Number of sentences: 3
+Number of declarative sentences: 1
+Number of interrogative sentences: 1
+Number of imperative sentences: 1
+Average sentence length: 21.666666666666668
+Average word length: 4.642857142857143
+Number of smileys: 3
+Words containing characters from 'g' to 'o':
+Qkd, kkkk, kvacenukana, gmail, com, anz, com, amzkdnwqsappa, zooem
+Valid emails:
+kvacenukana@gmail.com
+Word count per line:
+Line 0: 6
+Line 1: 0
+Line 2: 3
+Line 3: 2
+Line 4: 3
+Longest word: amzkdnwqsappa (Index: 11)
+Odd indexed words:
+zxdf, Aaa, kkkk, gmail, anz, amzkdnwqsappa, asd

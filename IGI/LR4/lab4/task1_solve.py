@@ -1,7 +1,9 @@
-import task1
+from Notebook import Notebook
 
 def task1_solve():
-    notebook = task1.Notebook()
+    """Main function for task 1."""
+
+    notebook = Notebook()
     csv_filename = 'notebook.csv'
     pickle_filename = 'notebook.pickle'
     while True:
@@ -15,7 +17,12 @@ def task1_solve():
 
         if choice == 1:
             surname = input('Введите фамилию: ')
-            phone = input('Введите номер телефона: ')
+            while True:
+                phone = input('Введите номер телефона (12-15 цифр): ')
+                if not Notebook.validate_phone(phone):
+                    print('Неверный формат номера телефона. Попробуйте еще раз.')
+                    continue
+                break
             notebook.add_entry(surname, phone)
         elif choice == 2:
             notebook.save_to_csv(csv_filename)
