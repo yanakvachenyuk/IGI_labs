@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Список заказчиков{% endblock title %}
+{% block header %}Список заказчиков{% endblock header %}
+{% block content %}
+<ul>
+    {% for city, clients in clients_by_city.items %}
+        <li>
+            <strong>{{ city }}</strong>
+            <ul>
+                {% for client in clients %}
+                    <li>
+                        Имя: {{ client.user.username }}
+                        <br>
+                        Email: {{ client.email }}
+                        <br>
+                        Номер: {{ client.phone}}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

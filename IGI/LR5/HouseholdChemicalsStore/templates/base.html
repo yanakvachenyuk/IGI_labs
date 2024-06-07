@@ -1,0 +1,57 @@
+<!DOCTYPE html >
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <style>
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .tab-button {
+            flex-grow: 1;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, {{ user.username|default:'Guest' }}</h1>
+    <div class="tab-buttons">
+        
+        <a href="{% url 'home' %}" class="tab-button">Главная</a>
+        <a href="{% url 'about_company' %}" class="tab-button">О компании</a>
+        <a href="{% url 'news' %}" class="tab-button">Новости</a>
+        <a href="{% url 'faq' %}" class="tab-button">Словарь терминов и понятий</a>
+        <a href="{% url 'contacts' %}" class="tab-button">Контакты</a>
+        <a href="{% url 'privacy_policy' %}" class="tab-button">Политика конфиденциальности</a>
+        <a href="{% url 'vacancies' %}" class="tab-button">Вакансии</a>
+        <a href="{% url 'reviews' %}" class="tab-button">Отзывы</a>
+        <a href="{% url 'promo_coupons' %}" class="tab-button">Промокоды и купоны</a>
+        {% if user.is_authenticated%}
+            {% if user.client %}
+            <!-- Если пользователь является клиентом -->
+            <a href="{% url 'client_profile' %}" class="tab-button">Профиль</a>
+            {% elif user.employee %}
+            <a href="{% url 'employee_profile' %}" class="tab-button">Профиль</a>
+            {% elif user.is_superuser %}
+            <a href="{% url 'admin_profile' %}" class="tab-button">Профиль</a>
+            {% endif %}
+        {% else %}
+    <a href="{% url 'login' %}" class="tab-button">Профиль</a>
+{% endif %}
+        
+        {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% else %}
+    <a href="{% url 'signup' %}" class="tab-button">Sign Up</a>
+    <a href="{% url 'login' %}" class="tab-button">Login</a>
+{% endif %}
+    </div>
+    <h1>{% block header %}{% endblock header %}</h1>
+    <div>{% block content%}{% endblock content %}</div>
+    
+</body>
+</html>

@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+{% block title %}Цитаты{% endblock title %}
+{% block header %}Цитаты{% endblock header %}
+{% block content %}
+<h1>Цитата дня</h1>
+    {% if data.quote %}
+        <p>{{ data.quote.body }}</p>
+        <p><em>— {{ data.quote.author }}</em></p>
+    {% else %}
+        <p>{{ data.error }}</p>
+    {% endif %}
+{% endblock content %}

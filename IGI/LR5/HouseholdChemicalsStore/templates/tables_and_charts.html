@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Таблицы и Диаграммы{% endblock title %}
+{% block header %}Таблицы и Диаграммы{% endblock header %}
+{% block content %}
+    <h2>Сводная таблица для клиентов:</h2>
+    {{ clients_table|safe }}
+    <h2>Количество клиентов по городам</h2>
+    <img src="{{ client_chart }}" alt="Количество кли��нтов по городам">
+
+    <h2>Сводная таблица для видов продукции:</h2>
+    {{ products_table|safe }}
+    <h2>Распределение продукции по видам</h2>
+    <img src="{{ product_chart }}" alt="Распределение продукции по видам">
+
+    <h2>Сводная таблица для объемов и поступлений от продаж:</h2>
+    {{ sales_table|safe }}
+    <h2>Общая сумма продаж по клиентам</h2>
+    <img src="{{ sales_chart }}" alt="Общая сумма продаж по клиентам">
+    
+    <h2>Прогноз продаж</h2>
+<img src="{{ sales_forecast }}" alt="Прогноз продаж">
+{% endblock content %}

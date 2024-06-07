@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+{% block title %}Словарь терминов и понятий{% endblock title %}
+{% block header %}Словарь терминов и понятий{% endblock header %}
+{% block content %}
+{% for i in all_items %}
+        <h3>{{ i.question }}</h3>
+        <p>{{ i.answer }}</p>
+        <p>{{ i.date_added }}</p>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Промокоды и купоны{% endblock title %}
+{% block header %}Промокоды и купоны{% endblock header %}
+{% block content %}
+    <h2>Действующие:</h2>
+    {% for i in all_items %}
+        {% if i.is_active %}
+            <p>Код: {{ i.code }}</p>
+            <p>Описание: {{ i.description }}</p>
+        {% endif %}
+    {% endfor %}
+    <h2>В архиве:</h2>
+    {% for i in all_items %}
+        {% if not i.is_active %}
+            <p>Код: {{ i.code }}</p>
+            <p>Описание: {{ i.description }}</p>
+        {% endif %}
+    {% endfor %}
+{% endblock content %}

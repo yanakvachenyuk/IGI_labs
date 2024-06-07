@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}История заказов{% endblock title %}
+{% block header %}История заказов{% endblock header %}
+{% block content %}
+    
+    {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <strong>Заказ №{{ order.id }}</strong><br>
+                    
+                    {% for order_product in order.orderproduct_set.all %}
+                        <p>Продукт: {{ order_product.product.name }}</p>
+                        <p>Количество: {{ order_product.quantity }} {{ order_product.product.unit }}</p>
+                        <p>Цена за единицу: {{ order_product.product.price }}</p>
+                    {% endfor %}
+                    
+                    <p>Дата заказа: {{ order.sale_date }}</p>
+                    <p>Дата доставки: {{ order.delivery_date }}</p>
+                    <p>Общая стоимость заказа: {{ order.total_price }}</p>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас еще нет заказов.</p>
+    {% endif %}
+{% endblock content %}

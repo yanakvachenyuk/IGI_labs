@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+{% block title %}Прогноз погоды{% endblock title %}
+{% block header %}Прогноз погоды для города {{ city }}{% endblock header %}
+{% block content %}
+   <div class="alert alert-danger">
+        Погода в Минске <br>
+        Температура: {{ temp }} °C <br>
+        <img src="http://openweathermap.org/img/wn/{{ icon }}@2x.png" alt="фото" class="img-thumbnail">
+   <h1>Календарь</h1>
+<p>Сегодня: {{ d }}</p>
+<p>{{ html_out|safe }}</p>
+<h4>Таймзона:  ({{timezone}})</h4>
+   </div>
+{% endblock content %}

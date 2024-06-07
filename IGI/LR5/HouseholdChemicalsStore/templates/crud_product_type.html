@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Виды товаров{% endblock title %}
+{% block header %}Виды товаров{% endblock header %}
+{% block content %}
+    <form method="POST" action="/create_product_type/">
+    {% csrf_token %}
+    <p>
+        <label>Введите название категории</label><br>
+        <input type="text" name="name" />
+    </p>
+    <input type="submit" value="Сохранить" >
+</form>
+{% if product_types.count > 0 %}
+<h2>Список категорий</h2>
+<table>
+    {% for type in  product_types%}
+    <tr>
+        <td>{{ type.name }}</td>
+         <td><a href="{% url 'edit_product_type' type.id %}">Изменить</a> | <a href="{% url 'delete_product_type' type.id %}">Удалить</a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock content %}

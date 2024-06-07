@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% block title %}Отзывы{% endblock title %}
+{% block header %}Отзывы{% endblock header %}
+{% block content %}
+    <div class="content">
+        {% if user.is_authenticated %}
+            
+            {% if user.client %}
+            <a href="{% url 'add_review' %}">Добавить отзыв</a>
+                {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}">Добавить отзыв</a>
+        {% endif %}
+    </div>
+{% for i in all_items %} 
+        <h3>{{ i.name }}</h3>
+        <p>{{ i.date }}</p>
+        <p>Оценка: {{ i.rating }}</p>
+        <p>{{ i.text }}</p>
+        
+    {% endfor %}
+{% endblock content %}

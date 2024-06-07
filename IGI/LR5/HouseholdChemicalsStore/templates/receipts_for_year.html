@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Общая сумма поступлений от продаж за выбранный год{% endblock title %}
+{% block header %}Общая сумма поступлений от продаж за выбранный год{% endblock header %}
+{% block content %}
+   
+    <form method="get" style="margin-top: 20px;">
+        <label for="year">Выберите год:</label>
+        <input id="year" name="year" type="number" min="2000" max="2099" step="1" value="{{ year }}" />
+        <input type="submit" value="Фильтровать">
+    </form>
+
+    <h3>Общая сумма поступлений от продаж за выбранный год: {{ total_sales_year.total_sales|default_if_none:"0" }} BYN</h3>
+{% endblock content %}

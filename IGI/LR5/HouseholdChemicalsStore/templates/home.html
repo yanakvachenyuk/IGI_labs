@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock title %}
+{% block header %}Главная{% endblock header %}
+{% block content %}
+    <img src="{{ latest_news.image.url }}" alt="">
+    <br><h3>{{ latest_news.title }}</h3>
+    <br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'weather' %}">Погода</a>
+        <a href="{% url 'quotes' %}">Цитаты</a>
+    {% else %}
+        <a href="{% url 'login' %}">Погода</a>
+        <a href="{% url 'login' %}">Цитаты</a>
+    {% endif %}
+    <br>
+    
+    {% if user.is_authenticated %}
+        {% if user.client %}
+            <a href="{% url 'order_create' %}">Оформить заказ</a>
+        {% endif %}
+    {% else %}
+        <a href="{% url 'login' %}" class="tab-button">Оформить заказ</a>
+    {% endif %}
+
+    {% if user.is_superuser %}
+        <h2>Товар, пользующийся наибольшим спросом:</h2>
+        <p>{{ most_demanded_product.name }} - {{ most_demanded_product.price }}</p>
+
+        <h2>Товар, не пользующийся спросом:</h2>
+        <p>{{ least_demanded_product.name }} - {{ least_demanded_product.price }}</p>
+        
+        <h1>Прайс-лист</h1>
+
+        <form action="" method="get">
+            <select name="category">
+                <option value="">Все категории</option>
+                {% for category in categories %}
+                    <option value="{{ category.name }}" {% if selected_category == category.name %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <select name="sort_order">
+                <option value="asc" {% if sort_order == 'asc' %}selected{% endif %}>Цена: по возрастанию</option>
+                <option value="desc" {% if sort_order == 'desc' %}selected{% endif %}>Цена: по убыванию</option>
+            </select>
+            <button type="submit">Фильтр</button>
+        </form>
+
+        <ul>
+            {% for category in categories %}
+                {% if selected_category == category.name or selected_category == "" %}
+                    <h3>{{ category.name }}</h3>
+                    <ul>
+                    {% for product in products %}
+                        {% if product.product_type == category %}
+                            <li>{{ product.name }} - {{ product.price }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+
+    {% if not user.is_superuser %}
+        <h1>Товары</h1>
+        <form action="" method="get">
+            <input type="number" name="min_price" placeholder="Min Price" value="{{ min_price }}">
+            <input type="number" name="max_price" placeholder="Max Price" value="{{ max_price }}">
+            <input type="text" name="search" placeholder="Поиск" value="{{ search_query }}">
+            <button type="submit">Фильтр</button>
+        </form>
+        {% for category in categories %}
+            <h2>{{ category.name }}</h2>
+            <ul>
+                {% for product in products %}
+                    {% if product.product_type == category %}
+                        <li>{{ product.name }} - {{ product.price }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
+        {% if user.client %}
+            <h1>Точки самовывоза</h1>
+            <ul>
+                {% for point in pickup_points %}
+                    <li>
+                        <div>
+                            Адрес: {{ point.address }}
+                        </div>
+                        <div>
+                            График работы: {{ point.working_hours }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

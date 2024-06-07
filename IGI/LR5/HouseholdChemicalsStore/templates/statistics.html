@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Статистика{% endblock title %}
+{% block header %}Статистика{% endblock header %}
+{% block content %}
+<h2>Статистика по товарам</h2>
+<ul>
+{% for product in products %}
+    <li>{{ product.name }} - {{ product.price }} BYN - Общая сумма: {{ product.total_sales|floatformat:2 }} BYN</li>
+{% endfor %}
+</ul>
+
+<h3>Общая сумма продаж: {{ total_sales|floatformat:2 }} BYN</h3>
+<h3>Среднее значение: {{ average_sales|floatformat:2 }} BYN</h3>
+<h3>Медиана продаж: {{ median_sales|floatformat:2 }} BYN</h3>
+<h3>Мода продаж: 
+    {% if mode_sales == "No mode" %}
+        {{ mode_sales }}
+    {% else %}
+        {{ mode_sales|floatformat:2 }} BYN
+    {% endif %}
+</h3>
+    
+    <h2>Статистика по клиентам</h2>
+<p>Средний возраст клиентов: {{ average_age|floatformat:2 }} лет</p>
+<p>Общее количество клиентов: {{ clients_count }}</p>
+{% endblock content %}

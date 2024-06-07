@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Ежемесячный объем продаж товаров каждого вида{% endblock title %}
+{% block header %}Ежемесячный объем продаж товаров каждого вида{% endblock header %}
+{% block content %}
+    <form method="get" style="margin-top: 20px;">
+        <label for="month">Выберите месяц:</label>
+        <select id="month" name="month">
+            <option value="1" {% if month == '1' %}selected{% endif %}>Январь</option>
+            <option value="2" {% if month == '2' %}selected{% endif %}>Февраль</option>
+            <option value="3" {% if month == '3' %}selected{% endif %}>Март</option>
+            <option value="4" {% if month == '4' %}selected{% endif %}>Апрель</option>
+            <option value="5" {% if month == '5' %}selected{% endif %}>Май</option>
+            <option value="6" {% if month == '6' %}selected{% endif %}>Июнь</option>
+            <option value="7" {% if month == '7' %}selected{% endif %}>Июль</option>
+            <option value="8" {% if month == '8' %}selected{% endif %}>Август</option>
+            <option value="9" {% if month == '9' %}selected{% endif %}>Сентябрь</option>
+            <option value="10" {% if month == '10' %}selected{% endif %}>Октябрь</option>
+            <option value="11" {% if month == '11' %}selected{% endif %}>Ноябрь</option>
+            <option value="12" {% if month == '12' %}selected{% endif %}>Декабрь</option>
+        </select>
+        <input type="submit" value="Фильтровать">
+    </form>
+
+    <h3>Ежемесячный объем продаж товаров каждого вида:</h3>
+    <ul>
+        {% for sale in sales_by_product_type %}
+            <li>{{ sale.product_type__name }}: {{ sale.total_sales }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

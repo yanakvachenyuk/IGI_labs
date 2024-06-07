@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Список клиентов{% endblock title %}
+{% block header %}Список клиентов{% endblock header %}
+{% block content %}
+<ul>
+        {% for client in clients %}
+            <li>
+                <strong>Имя: {{ client.user.username }}</strong><br>
+                <p>Дата рождения: {{ client.date_of_birth}}</p>
+                <p>Email: {{ client.email}}</p>
+                <p>Телефон: {{ client.phone}}</p>
+                <p>Город: {{ client.city}}</p>
+                
+            </li>
+            <hr>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock content %}

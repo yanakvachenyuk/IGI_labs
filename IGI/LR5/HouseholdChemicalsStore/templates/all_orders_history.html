@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% block title %}История заказов{% endblock title %}
+{% block header %}История заказов{% endblock header %}
+{% block content %}
+    <ul>
+        {% for order in orders %}
+            <li>
+                <strong>Номер заказа:</strong> {{ order.id }}<br>
+                <p>Клиент: {{ order.client.user.username }}</p>
+                <p>Дата заказа: {{ order.sale_date }}</p>
+                <p>Дата доставки: {{ order.delivery_date }}</p>
+                <p>Товары:</p>
+                <ul>
+                    {% for order_product in order.orderproduct_set.all %}
+                        <li>{{ order_product.product }} - Количество: {{ order_product.quantity }}</li>
+                    {% endfor %}
+                </ul>
+            <p>Общая стоимость: {{ order.total_price }}</p>
+            </li>
+            <hr>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock content %}

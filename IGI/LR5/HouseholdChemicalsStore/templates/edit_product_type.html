@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Редактирование видов товаров{% endblock title %}
+{% block header %}Редактирование видов товаров{% endblock header %}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <label>Введите название категории</label><br>
+        <input type="text" name="name" value="{{product_type.name}}" />
+    </p>
+    <input type="submit" value="Сохранить" >
+</form>
+{% endblock content %}
