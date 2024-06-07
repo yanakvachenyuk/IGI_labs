@@ -26,10 +26,11 @@ class TextAnalyzer:
     def analyze_text(self):
         """Analyze the text."""
 
-        self.sentences = re.split(r'(?<=[.!?]) +', self.text)
+        self.sentences = re.split(r'(?<=[.!?])[ +\n]', self.text)
         self.all_words = self.find_words(self.text)
         self.sentence_types = self.count_sentence_types(self.sentences)
         self.smileys = self.find_smileys(self.text)
+
 
         lines = self.text.splitlines()
 
@@ -43,8 +44,7 @@ class TextAnalyzer:
             self.count_words_in_line[ind] = word_count
 
 
-
-    def find_words(self,text):
+    def find_words(self, text):
         """Find all words in the text."""
 
         words = re.findall(r'\b\w+\b', text)
@@ -58,7 +58,8 @@ class TextAnalyzer:
     def is_valid_email(self, email):
         """Check if the email is valid."""
 
-        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        pattern = r'^\w+@\w+\.[a-zA-Z]{2,}$'
+        #pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         return re.match(pattern, email) is not None
 
     def count_sentence_types(self, sentences):

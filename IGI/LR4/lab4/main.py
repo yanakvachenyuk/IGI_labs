@@ -3,6 +3,7 @@ import task2_solve
 import task3_solve
 import task4
 import task5
+import math
 
 # Lab work 4 Classes, files, serialization, regular expressions and standard libraries
 # Kvachenyuk Yana 14.04.2024

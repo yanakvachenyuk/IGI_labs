@@ -11,10 +11,6 @@ class GeometricFigure(ABC):
 
         self.name = input_name
 
-    def get_name(self):
-        """Return the name of the figure."""
-
-        return self.name
     @abstractmethod
     def area(self):
         """Calculate the area of the figure."""
@@ -63,7 +59,7 @@ class Triangle(GeometricFigure):
     def draw(self):
 
         fig, ax = plt.subplots(figsize=(8, 6))
-        # calculate the coordinates of the vertices
+
         x2 = self.height * math.tan(self.angle)
         y2 = self.height
         vertices = [[0, 0], [self.base, 0], [x2, y2]]

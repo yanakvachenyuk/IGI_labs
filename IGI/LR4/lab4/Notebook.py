@@ -6,12 +6,13 @@ class Notebook:
 
     def __init__(self):
         """Initialize the notebook."""
+
         self.entries = []
 
     def add_entry(self, surname, phone):
         """Add a new entry to the notebook."""
-        if self.validate_phone(phone):
-            self.entries.append({'surname': surname, 'phone': phone})
+
+        self.entries.append({'surname': surname, 'phone': phone})
 
     @staticmethod
     def validate_phone(phone):

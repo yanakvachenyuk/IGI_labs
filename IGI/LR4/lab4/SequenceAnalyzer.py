@@ -68,6 +68,10 @@ class SequenceAnalyzer:
 
         plt.plot(x_values, y_values_math, label='Функция (1/(1-x))', color='red', linestyle='--')
 
+        max_y = max(y_values_series)
+        max_x = x_values[y_values_series.index(max_y)]
+        plt.annotate('Максимум ', xy=(max_x, max_y), xytext=(max_x - 0.5, max_y + 0.1), arrowprops=dict(facecolor='black', shrink=0.05))
+
         plt.xlabel('x')
         plt.ylabel('y')
         plt.title('Графики разложения функции в ряд и функции 1/(1-x)')
